@@ -20,11 +20,13 @@ class Produtos{
         //Obs: "this.lerDados()" se refere, nesse caso, ao próprio objeto, ou seja, ele está executando a função lerDados() que ele mesmo possui.
 
         if(this.validaCampos(produto)){
-            alert('salvar')
+            this.adicionar(produto);
+
             alert('BAM!');
         }
 
-        console.log(produto);
+        this.listaTabela();
+        this.limparCampos();
         
     }
 
@@ -62,8 +64,65 @@ class Produtos{
 
     }
 
-    cancelar(){
+    adicionar(produto){
+        //Função responsável por adicionar a variável 'produto' e seus valores à 'arrayProdutos' linha por linha
 
+        this.arrayProdutos.push(produto);
+        this.id++;
+    }
+
+    listaTabela(){
+        //Função responsável por criar a tabela dentro do elemento tbdoy no html
+
+        let tbody = document.getElementById('tbody');
+
+        tbody.innerText = '';
+        //Limpa a tabela cada atualização, impede duplicação automática
+
+
+        for(let i = 0; i < this.arrayProdutos.length; i++){
+
+                //Nota:
+                //tr = linha
+                //td = coluna
+
+            let tr = tbody.insertRow();
+
+            let td_id = tr.insertCell();
+            let td_nome = tr.insertCell();
+            let td_valor = tr.insertCell();            
+            let td_acoes = tr.insertCell();
+            //Cria linhas e colunas
+
+            td_id.innerText = this.arrayProdutos[i].id;
+            td_nome.innerText = this.arrayProdutos[i].nomeProduto;
+            td_valor.innerText = this.arrayProdutos[i].valorProduto;
+            //Atribui texto às linhas e colunas com base nos valores da array
+            
+            td_id.classList.add('center');
+            //Utiliza a classe center no css e a aplica ao 'td_id'
+
+            let imgEdit = document.createElement('img');
+            imgEdit.src = 'img/edit.svg';
+
+            let imgDelete = document.createElement('img');
+            imgDelete.src = 'img/delete.svg';
+
+            td_acoes.appendChild(imgEdit);
+            td_acoes.appendChild(imgDelete);
+            //Cria, localiza e adiciona as imagens
+            
+        }
+    }
+
+    limparCampos(){
+        //Função responsáve por limpar os campos de input
+
+        document.getElementById('produto').value = '';
+        document.getElementById('valor').value = '';
+    }
+
+    cancelar(){        
         alert('BOOM!')
     }
 }
