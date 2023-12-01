@@ -26,7 +26,7 @@ class Produtos{
         }
 
         this.listaTabela();
-        this.limparCampos();
+        //this.limparCampos();
         
     }
 
@@ -127,10 +127,12 @@ class Produtos{
 
             let imgDelete = document.createElement('img');
             imgDelete.src = 'img/delete.svg';
+            imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")");
+            //Localiza e crias as imagens além e então adiciona o atributo para interação juntamente com o id da linha correspondente
 
             td_acoes.appendChild(imgEdit);
             td_acoes.appendChild(imgDelete);
-            //Cria, localiza e adiciona as imagens
+            //Adiciona as imagens à tabela
 
         }
     }
@@ -147,6 +149,23 @@ class Produtos{
 
     cancelar(){        
         alert('BOOM!')
+    }
+
+    deletar(id){
+        //Função responsável pela funcionalidade do ícone de deletar. Ela recebe o valor de id da função que a chamou
+
+        let tbody = document.getElementById('tbody');
+        for(let i = 0; i < this.arrayProdutos.length; i++){
+            //Carrega a tabela e checa os elementos da array
+
+            if(this.arrayProdutos[i].id == id){
+                //Busca a linha da array através do id fornecido
+
+                this.arrayProdutos.splice(i,1);
+                tbody.deleteRow(i);
+                //Deleta respectivamente a linha da array e a linha da tabela
+            }
+        }
     }
 }
 
