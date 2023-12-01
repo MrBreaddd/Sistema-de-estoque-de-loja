@@ -34,7 +34,7 @@
         </div>
         <div class="lineinput">
             <label>Estoque</label>
-            <input type="text" id="estoque" placeholder="Número de unidades no estoque">
+            <input type="number" id="estoque" placeholder="Número de unidades no estoque">
         </div>
         <div class="lineinput">
             <label>Unidade</label>
@@ -42,15 +42,15 @@
         </div>
         <div class="lineinput">
             <label>Custo</label>
-            <input type="text" id="valor" placeholder="Valor do produto">
+            <input type="number" id="valor" placeholder="Valor do produto">
         </div>
         <div class="lineinput">
             <label>Valor de venda</label>
-            <input type="text" id="valorVenda" placeholder="Valor de venda do produto">
+            <input type="number" id="valorVenda" placeholder="Valor de venda do produto">
         </div>
 
 
-        <button onclick="produto.salvar()"> Salvar </button>
+        <button onclick="produto.salvar()" id="btn1"> Salvar </button>
         <button onclick="produto.cancelar()"> Cancelar </button>
     </div>
 

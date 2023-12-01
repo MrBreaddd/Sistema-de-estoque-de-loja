@@ -7,6 +7,7 @@ class Produtos{
 
         this.id = 1;
         this.arrayProdutos = [];
+        this.editId = null;
     }
 
 
@@ -19,10 +20,16 @@ class Produtos{
         let produto = this.lerDados();
         //Obs: "this.lerDados()" se refere, nesse caso, ao próprio objeto, ou seja, ele está executando a função lerDados() que ele mesmo possui.
 
-        if(this.validaCampos(produto)){
-            this.adicionar(produto);
+        if(this.validaCampos(produto)){            
+            if(this.editId == null){                     
+                
+                this.adicionar(produto);
+                alert('BAM!');
+            }
+            else{
+                this.atualizar(this.editId, produto);
+            }
 
-            alert('BAM!');
         }
 
         this.listaTabela();
@@ -81,6 +88,9 @@ class Produtos{
     adicionar(produto){
         //Função responsável por adicionar a variável 'produto' e seus valores à 'arrayProdutos' linha por linha
 
+        produto.valorProduto = parseFloat(produto.valorProduto);
+        produto.valorVendaProduto = parseFloat(produto.valorVendaProduto);
+
         this.arrayProdutos.push(produto);
         this.id++;
     }
@@ -124,6 +134,7 @@ class Produtos{
 
             let imgEdit = document.createElement('img');
             imgEdit.src = 'img/edit.svg';
+            imgEdit.setAttribute("onclick", "produto.preEditar("+ JSON.stringify(this.arrayProdutos[i]) +")");
 
             let imgDelete = document.createElement('img');
             imgDelete.src = 'img/delete.svg';
@@ -151,19 +162,51 @@ class Produtos{
         alert('BOOM!')
     }
 
+    preEditar(dados){
+        this.editId = dados.id;
+
+        document.getElementById('produto').value = dados.nomeProduto;
+        document.getElementById('estoque').value = dados.estoqueProduto;
+        document.getElementById('unidade').value = dados.unidadeProduto;
+        document.getElementById('valor').value = dados.valorProduto;
+        document.getElementById('valorVenda').value = dados.valorVendaProduto;
+
+        document.getElementById('btn1').innerText = 'Atualizar'
+
+    }
+
+    atualizar(id, novoProduto){
+        for(let i = 0; i < this.arrayProdutos.length; i++){
+            if(this.arrayProdutos[i].id == id){
+
+                this.arrayProdutos[i].nomeProduto = novoProduto.nomeProduto
+                this.arrayProdutos[i].estoqueProduto = novoProduto.estoqueProduto
+                this.arrayProdutos[i].unidadeProduto = novoProduto.unidadeProduto
+                this.arrayProdutos[i].valorProduto = novoProduto.valorProduto
+                this.arrayProdutos[i].valorVendaProduto = novoProduto.valorVendaProduto
+            }
+        }
+
+        this.editId = null
+        document.getElementById('btn1').innerText = "Salvar"
+    }
+
     deletar(id){
         //Função responsável pela funcionalidade do ícone de deletar. Ela recebe o valor de id da função que a chamou
 
-        let tbody = document.getElementById('tbody');
-        for(let i = 0; i < this.arrayProdutos.length; i++){
-            //Carrega a tabela e checa os elementos da array
+        if(confirm('Tem certeza que deseja deledar o produto de ID ' + id + '?')){
 
-            if(this.arrayProdutos[i].id == id){
-                //Busca a linha da array através do id fornecido
+            let tbody = document.getElementById('tbody');
+            for(let i = 0; i < this.arrayProdutos.length; i++){
+                //Carrega a tabela e checa os elementos da array
 
-                this.arrayProdutos.splice(i,1);
-                tbody.deleteRow(i);
-                //Deleta respectivamente a linha da array e a linha da tabela
+                if(this.arrayProdutos[i].id == id){
+                    //Busca a linha da array através do id fornecido
+
+                    this.arrayProdutos.splice(i,1);
+                    tbody.deleteRow(i);
+                    //Deleta respectivamente a linha da array e a linha da tabela
+                }
             }
         }
     }
