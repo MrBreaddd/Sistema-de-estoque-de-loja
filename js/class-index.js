@@ -37,7 +37,10 @@ class Produtos{
 
         produto.id = this.id;
         produto.nomeProduto = document.getElementById('produto').value;
+        produto.estoqueProduto = document.getElementById('estoque').value;
+        produto.unidadeProduto = document.getElementById('unidade').value;
         produto.valorProduto = document.getElementById('valor').value;
+        produto.valorVendaProduto = document.getElementById('valorVenda').value;
 
         return produto        
     }
@@ -51,8 +54,20 @@ class Produtos{
             msg += ' - Informe o nome do produto \n';
         }
 
+        if(produto.estoqueProduto == ''){
+            msg += ' - Informe o estoque do produto \n';
+        }
+
+        if(produto.unidadeProduto == ''){
+            msg += ' - Informe a unidade do produto \n';
+        }
+
         if(produto.valorProduto == ''){
             msg += ' - Informe o valor do produto \n';
+        }
+
+        if(produto.valorVendaProduto == ''){
+            msg += ' - Informe o valor de venda do produto \n';
         }
 
         if(msg != ''){
@@ -61,7 +76,6 @@ class Produtos{
         }
 
         return true;
-
     }
 
     adicionar(produto){
@@ -88,19 +102,25 @@ class Produtos{
 
             let tr = tbody.insertRow();
 
-            let td_id = tr.insertCell();
+            let td_codigo = tr.insertCell();
             let td_nome = tr.insertCell();
-            let td_valor = tr.insertCell();            
+            let td_estoque = tr.insertCell();
+            let td_unidade = tr.insertCell();
+            let td_custo = tr.insertCell();
+            let td_valorVenda = tr.insertCell();
             let td_acoes = tr.insertCell();
             //Cria linhas e colunas
 
-            td_id.innerText = this.arrayProdutos[i].id;
+            td_codigo.innerText = this.arrayProdutos[i].id;
             td_nome.innerText = this.arrayProdutos[i].nomeProduto;
-            td_valor.innerText = this.arrayProdutos[i].valorProduto;
+            td_estoque.innerText = this.arrayProdutos[i].estoqueProduto;
+            td_unidade.innerText = this.arrayProdutos[i].unidadeProduto;
+            td_custo.innerText = this.arrayProdutos[i].valorProduto;
+            td_valorVenda.innerText = this.arrayProdutos[i].valorVendaProduto;
             //Atribui texto às linhas e colunas com base nos valores da array
             
-            td_id.classList.add('center');
-            //Utiliza a classe center no css e a aplica ao 'td_id'
+            td_codigo.classList.add('center');
+            //Utiliza a classe center no css e a aplica ao 'td_codigo'
 
             let imgEdit = document.createElement('img');
             imgEdit.src = 'img/edit.svg';
@@ -111,15 +131,18 @@ class Produtos{
             td_acoes.appendChild(imgEdit);
             td_acoes.appendChild(imgDelete);
             //Cria, localiza e adiciona as imagens
-            
+
         }
     }
 
     limparCampos(){
         //Função responsáve por limpar os campos de input
 
-        document.getElementById('produto').value = '';
-        document.getElementById('valor').value = '';
+        produto.nomeProduto = document.getElementById('produto').value = '';
+        produto.estoqueProduto = document.getElementById('estoque').value = '';
+        produto.unidadeProduto = document.getElementById('unidade').value = '';
+        produto.valorProduto = document.getElementById('valor').value = '';
+        produto.valorVendaProduto = document.getElementById('valorVenda').value = '';
     }
 
     cancelar(){        
