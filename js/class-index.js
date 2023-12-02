@@ -27,7 +27,7 @@ class Produtos{
             valorVendaProduto: "90.210"}
         ]
         this.editId = null;
-        this.sLevel = 1;
+        //this.ssLevel = 1;
     }
 
 
@@ -162,9 +162,9 @@ class Produtos{
             imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")");
             //Localiza e crias as imagens além e então adiciona o atributo para interação juntamente com o id da linha correspondente
             
-            if(sLevel != 3){
+            if(this.ssLevel != 3){
             td_acoes.appendChild(imgEdit);
-                if(sLevel == 1){
+                if(this.ssLevel == 1){
                 td_acoes.appendChild(imgDelete);
                 //Adiciona as imagens à tabela em seus respectivos perfis
                 }
@@ -192,34 +192,47 @@ class Produtos{
     }
 
     preEditar(dados){
+
         this.editId = dados.id;
 
-        document.getElementById('produto').value = dados.nomeProduto;
-        document.getElementById('estoque').value = dados.estoqueProduto;
-        document.getElementById('unidade').value = dados.unidadeProduto;
-        document.getElementById('valor').value = dados.valorProduto;
-        document.getElementById('valorVenda').value = dados.valorVendaProduto;
+            document.getElementById('produto').value = dados.nomeProduto;
+            document.getElementById('estoque').value = dados.estoqueProduto;
+            document.getElementById('unidade').value = dados.unidadeProduto;
+            document.getElementById('valor').value = dados.valorProduto;
+            document.getElementById('valorVenda').value = dados.valorVendaProduto;
 
-        document.getElementById('btn1').innerText = 'Atualizar'
-        document.getElementById('cadastroTitulo').innerText = 'Edição de Produto ' + dados.id;
-
+            document.getElementById('btn1').innerText = 'Atualizar'
+            document.getElementById('cadastroTitulo').innerText = 'Edição de Estoque de Produto ' + dados.id;
     }
+
 
     atualizar(id, novoProduto){
         for(let i = 0; i < this.arrayProdutos.length; i++){
-            if(this.arrayProdutos[i].id == id){
+            if(this.ssLevel <= 1){
+                if(this.arrayProdutos[i].id == id){
 
-                this.arrayProdutos[i].nomeProduto = novoProduto.nomeProduto
-                this.arrayProdutos[i].estoqueProduto = novoProduto.estoqueProduto
-                this.arrayProdutos[i].unidadeProduto = novoProduto.unidadeProduto
-                this.arrayProdutos[i].valorProduto = novoProduto.valorProduto
-                this.arrayProdutos[i].valorVendaProduto = novoProduto.valorVendaProduto
+                    this.arrayProdutos[i].nomeProduto = novoProduto.nomeProduto
+                    this.arrayProdutos[i].estoqueProduto = novoProduto.estoqueProduto
+                    this.arrayProdutos[i].unidadeProduto = novoProduto.unidadeProduto
+                    this.arrayProdutos[i].valorProduto = novoProduto.valorProduto
+                    this.arrayProdutos[i].valorVendaProduto = novoProduto.valorVendaProduto
+                }
+            }
+            else{
+                if(this.arrayProdutos[i].id == id){                    
+                    this.arrayProdutos[i].estoqueProduto = novoProduto.estoqueProduto
+                }
             }
         }
 
         this.editId = null
         document.getElementById('btn1').innerText = "Salvar";
         document.getElementById('cadastroTitulo').innerText = 'Cadastro de Produtos';
+
+        document.getElementById('produto').innerText = 'Número de unidades no estoque';
+        document.getElementById('unidade').innerText = 'Unidade de medida utilizada';
+        document.getElementById('valor').innerText = 'Valor do produto';
+        document.getElementById('valorVenda').innerText = 'Valor de venda do produto';
 
     }
 
@@ -242,6 +255,7 @@ class Produtos{
             }
         }
     }
+
 }
 
 var produto = new Produtos()
@@ -263,12 +277,12 @@ class Login{
             if(username === cUser.User || senha === cUser.Senha){
                 alert("Login bem sucedido!");
                 window.open("./user.html");
-                var sLevel = cUser.sLevel;
+                var ssLevel = cUser.sLevel;
             }
             if(username === financeiro.User || senha === financeiro.Senha){
                 alert("Login bem sucedido!");
                 window.open("./index.html");
-                var sLevel = cUser.sLevel;
+                var ssLevel = cUser.sLevel;
             }
             alert("Login não concluído!");
         }
