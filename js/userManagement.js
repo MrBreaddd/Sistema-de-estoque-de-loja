@@ -3,8 +3,13 @@ class Users{
         constructor(){
             
     
-            this.code = 1;
-            this.arrayUsers = [];
+            this.code = 3;
+            this.arrayUsers = [
+                {code: 1, username: 'admin', senha: '123456', sLevel: '0'},
+                {code: 2, username: 'user', senha: '123', sLevel: '1'}
+            ]
+            
+
             this.editCode = null;
         }
     
@@ -19,7 +24,7 @@ class Users{
                 if(this.editCode == null){                     
                     
                     this.adicionar(newUser);
-                    alert('BAM!');
+                    //alert('BAM!');
                 }
                 else{
                     this.atualizar(this.editCode, newUser);
@@ -179,7 +184,7 @@ class Users{
         deletar(code){
             //Função responsável pela funcionalidade do ícone de deletar. Ela recebe o valor de id da função que a chamou
     
-            if(confirm('Tem certeza que deseja deledar o produto de ID ' + code + '?')){
+            if(confirm('Tem certeza que deseja deledar o usuário de ID ' + code + '?')){
     
                 let tbody = document.getElementById('tbody');
                 for(let i = 0; i < this.arrayUsers.length; i++){
