@@ -157,10 +157,12 @@ class Produtos{
             imgDelete.src = 'img/delete.svg';
             imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")");
             //Localiza e crias as imagens além e então adiciona o atributo para interação juntamente com o id da linha correspondente
-
+            
+            if(sLevel != 3){
             td_acoes.appendChild(imgEdit);
             td_acoes.appendChild(imgDelete);
             //Adiciona as imagens à tabela
+            }
 
         }
     }
@@ -250,11 +252,18 @@ class Login{
         if(username === adm.User || senha === adm.Senha){
             alert("Login bem sucedido!");
             window.open("./index.html");
+            var ssLevel = cUser.sLevel;
         }
         else{
             if(username === cUser.User || senha === cUser.Senha){
                 alert("Login bem sucedido!");
                 window.open("./user.html");
+                var sLevel = cUser.sLevel;
+            }
+            if(username === financeiro.User || senha === financeiro.Senha){
+                alert("Login bem sucedido!");
+                window.open("./index.html");
+                var sLevel = cUser.sLevel;
             }
             alert("Login não concluído!");
         }
@@ -291,7 +300,7 @@ class User{
 const adm = {
     username: "admin",
     senha: "123456",
-    sLevel: "0",
+    sLevel: "1",
 
     get User(){
         return this.username;
@@ -308,11 +317,29 @@ const adm = {
 
 }
 
+const financeiro = {
+    username: "financa",
+    senha: "1234",
+    sLevel: "2",
+
+    get User(){
+        return this.username;
+    },
+
+    get Senha(){
+        return this.senha;
+    },
+
+    get sLevel(){        
+        return this.sLevel;
+    }
+}
+
 const cUser = {
 
     username: "user",
     senha: "123",
-    sLevel: "1",
+    sLevel: "3",
 
     get User(){
         return this.username;
