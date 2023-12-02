@@ -13,17 +13,21 @@
 </head>
 <body>
 
-<header>
-
-    <h1> BEM-VINDO </h1>
-</header>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="user_manager.html">Usuários</a>
+        <a href="index.html">Produtos</a>
+        <a href="login.html">Logout</a>
+        
+    </div>
+      
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
 
 <main>
 
     <div class="title">
-        <h2>Cadastro de Produtos</h2>
-        <span>Index</span>
+        <h2 id="cadastroTitulo">Cadastro de Produtos</h2>
     </div>
 
     <div class="card">
@@ -72,6 +76,7 @@
     </div>
 </main>
     
+
   
 </body>
 </html>

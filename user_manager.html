@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="js/userManagement.js"> </script>
+</head>
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="user_manager.html">Usuários</a>
+        <a href="index.html">Produtos</a>
+        <a href="login.html">Logout</a>
+    </div>
+      
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+
+<main>
+
+
+
+    
+
+    <div class="content">
+        <h2>Lista de usuários</h2>
+        <table border="1">
+            <thead>
+                <th class="center">ID</th>
+                <th>Nome de usuário</th>
+                <th>Senha</th>
+                <th>Nível de segurança</th>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="title">
+        <h2 id="cadastroTitulo">Cadastro de Usuários</h2>
+    </div>
+
+    <div class="card">
+
+        <div class="lineinput">
+            <label>Usuário</label>
+            <input type="text" id="username" placeholder="Nome do usuário">
+        </div>
+        <div class="lineinput">
+            <label>Senha</label>
+            <input type="number" id="senha" placeholder="Senha do usuário">
+        </div>
+        <div class="lineinput">
+            <label>Segurança</label>
+            <input type="number" id="sLevel" placeholder="Nível de segurança do usuário (0 ou 1)">
+        </div>
+
+
+        <button onclick="user.salvar()" id="btn1"> Salvar </button>
+        <button onclick="user.cancelar()"> Cancelar </button>
+    </div>
+
+</main>
+    
+
+  
+</body>
+</html>

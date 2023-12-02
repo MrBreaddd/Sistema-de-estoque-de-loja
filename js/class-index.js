@@ -24,7 +24,7 @@ class Produtos{
             if(this.editId == null){                     
                 
                 this.adicionar(produto);
-                alert('BAM!');
+                //alert('BAM!');
             }
             else{
                 this.atualizar(this.editId, produto);
@@ -33,7 +33,8 @@ class Produtos{
         }
 
         this.listaTabela();
-        //this.limparCampos();
+        this.limparCampos();
+        console.log(this.arrayProdutos);
         
     }
 
@@ -158,8 +159,13 @@ class Produtos{
         produto.valorVendaProduto = document.getElementById('valorVenda').value = '';
     }
 
-    cancelar(){        
-        alert('BOOM!')
+    cancelar(){
+
+        this.limparCampos();
+        this.editId = null;
+        document.getElementById('btn1').innerText = 'Salvar';
+        document.getElementById('cadastroTitulo').innerText = 'Cadastro de Produtos';
+        //alert('BOOM!')
     }
 
     preEditar(dados){
@@ -172,6 +178,7 @@ class Produtos{
         document.getElementById('valorVenda').value = dados.valorVendaProduto;
 
         document.getElementById('btn1').innerText = 'Atualizar'
+        document.getElementById('cadastroTitulo').innerText = 'Edição de Produto ' + dados.id;
 
     }
 
@@ -188,7 +195,9 @@ class Produtos{
         }
 
         this.editId = null
-        document.getElementById('btn1').innerText = "Salvar"
+        document.getElementById('btn1').innerText = "Salvar";
+        document.getElementById('cadastroTitulo').innerText = 'Cadastro de Produtos';
+
     }
 
     deletar(id){
@@ -215,3 +224,98 @@ class Produtos{
 var produto = new Produtos()
 //O objeto. Ele possui TUDO que está escrito dentro das chaves da classe, incluindo métodos(funções) e atributos.
 //ELE é o executado e o responsável por todas as ações.
+
+class Login{
+
+    validar(){
+        let username = document.getElementById('username').value;
+        let senha = document.getElementById('senha').value;
+
+        if(username === adm.User || senha === adm.Senha){
+            alert("Login bem sucedido!");
+            window.open("./index.html");
+        }
+        else{
+            if(username === cUser.User || senha === cUser.Senha){
+                alert("Login bem sucedido!");
+                window.open("./user.html");
+            }
+            alert("Login não concluído!");
+        }
+    }
+
+
+}
+
+var login = new Login();
+
+
+class User{
+
+    constructor(){
+        this.username;
+        this.senha;
+        this.sLevel;
+    }
+
+
+    cadastroUser(){
+
+        
+
+    }
+
+
+    cadastro(){
+
+    }
+}
+
+
+const adm = {
+    username: "admin",
+    senha: "123456",
+    sLevel: "0",
+
+    get User(){
+        return this.username;
+    },
+
+    get Senha(){
+        return this.senha;
+    },
+
+    get sLevel(){
+        return this.sLevel;
+    }
+    
+
+}
+
+const cUser = {
+
+    username: "user",
+    senha: "123",
+    sLevel: "1",
+
+    get User(){
+        return this.username;
+    },
+
+    get Senha(){
+        return this.senha;
+    },
+
+    get sLevel(){
+        return this.sLevel;
+    }
+}
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
