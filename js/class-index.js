@@ -7,23 +7,27 @@ class Produtos{
 
         this.id = 4;
         this.arrayProdutos = [
-            {id:1, nomeProduto: "GIROFLEX AZ - COM IMA E PLUG PARA ACENDER",
+            {id:1,
+            nomeProduto: "GIROFLEX AZ - COM IMA E PLUG PARA ACENDER",
             estoqueProduto: "6",
             unidadeProduto: "PC",
             valorProduto: "82.125",
             valorVendaProduto: "136.640"},
-            {id:2, nomeProduto: "[ESTANHADO] NAR34-2N-FE TERMINAL P/CABO",
+            {id:2,
+            nomeProduto: "[ESTANHADO] NAR34-2N-FE TERMINAL P/CABO",
             estoqueProduto: "0",
             unidadeProduto: "PC",
             valorProduto: "245.710",
             valorVendaProduto: "400.500"},
-            {id:3, nomeProduto: "CANTONMEIRA 2 X 1/8 (50,80 X 3,18MM)",
+            {id:3,
+            nomeProduto: "CANTONMEIRA 2 X 1/8 (50,80 X 3,18MM)",
             estoqueProduto: "1",
             unidadeProduto: "UN",
             valorProduto: "54.675",
             valorVendaProduto: "90.210"}
         ]
         this.editId = null;
+        this.sLevel = 1;
     }
 
 
@@ -160,10 +164,11 @@ class Produtos{
             
             if(sLevel != 3){
             td_acoes.appendChild(imgEdit);
-            td_acoes.appendChild(imgDelete);
-            //Adiciona as imagens à tabela
+                if(sLevel == 1){
+                td_acoes.appendChild(imgDelete);
+                //Adiciona as imagens à tabela em seus respectivos perfis
+                }
             }
-
         }
     }
 
