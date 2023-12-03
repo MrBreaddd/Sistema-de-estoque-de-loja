@@ -1,15 +1,19 @@
-class Users{
+class Userr{
     
-        constructor(){
-            
-    
-            this.code = 3;
+    constructor(){
             this.arrayUsers = [
-                {code: 1, username: 'admin', senha: '123456', sLevel: '0'},
-                {code: 2, username: 'user', senha: '123', sLevel: '1'}
-            ]
-            
+            {code: 1, username: 'admin', senha: '123456', sLevel: '0'},
+            {code: 2, username: 'user', senha: '123', sLevel: '1'}
+        ]
+    }
+}
 
+class Users extends Userr{
+    
+        constructor(arrayUsers){
+            
+            super(arrayUsers);
+            this.code = 3;
             this.editCode = null;
         }
     
@@ -213,3 +217,4 @@ class Users{
       function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
       }
+
