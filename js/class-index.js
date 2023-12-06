@@ -27,7 +27,7 @@ class Produtos{
                 valorVendaProduto: "90.210"}
             ]
             this.editId = null;
-            //this.ssLevel = 1;
+            this.ssLevel = 1;
         }
     
     
@@ -35,6 +35,8 @@ class Produtos{
         //De novo, a classe NÃO os executa, o objeto sim.
     
         salvar(){
+
+            //console.log("ssLevel =", ssLevel);
             //Função responsável por salvar os produtos com base nos dados de input
     
             let produto = this.lerDados();
@@ -54,10 +56,10 @@ class Produtos{
     
             this.listaTabela();
             this.limparCampos();
-            console.log(this.arrayProdutos);
+            //console.log(this.arrayProdutos);
             
         }
-    
+        
         lerDados(){
             //Função responsável por criar uma variável 'produto' contendo as informações de input + atributo ID e retorna-la
     
@@ -263,32 +265,47 @@ class Produtos{
     //ELE é o executado e o responsável por todas as ações.
     
     class Login{
-    
-        validar(){
-            username = document.getElementById('username').value;
-            senha = document.getElementById('senha').value;
-    
-            if(username === adm.User || senha === adm.Senha){
-                alert("Login bem sucedido!");
-                window.open("./index.html");
-                var ssLevel = cUser.sLevel;
-            }
-            else{
-                if(username === cUser.User || senha === cUser.Senha){
-                    alert("Login bem sucedido!");
-                    window.open("./user.html");
-                    var ssLevel = cUser.sLevel;
-                }
-                if(username === financeiro.User || senha === financeiro.Senha){
-                    alert("Login bem sucedido!");
-                    window.open("./index.html");
-                    var ssLevel = cUser.sLevel;
-                }
-                alert("Login não concluído!");
-            }
+
+        constructor(){
+            this.ssLevel = 1;
         }
     
-    
+        validar(){
+
+            var username = document.getElementById('username').value;
+            var senha = document.getElementById('senha').value;
+
+            if(username === adm.User || senha === adm.Senha){
+                console.log(this.ssLevel)
+
+                alert("Login bem sucedido!");
+                window.open("./index.html");
+                this.ssLevel = adm.sLevel;                
+            }
+            else if(username === cUser.User || senha === cUser.Senha){
+                console.log(this.ssLevel)
+
+                alert("Login bem sucedido!");
+                window.open("./user.html");
+                this.ssLevel = cUser.sLevel;                
+            }
+            else if(username === financeiro.User || senha === financeiro.Senha){
+                console.log(this.ssLevel)
+
+                alert("Login bem sucedido!");
+                window.open("./index.html");
+                this.ssLevel = financeiro.sLevel;                
+            }
+            else{
+                alert("Login não concluído!");
+            }
+            console.log(this.ssLevel)
+        }
+
+        obter_ssLevel(){
+            return this.ssLevel;
+        }
+                         
     }
     
     var login = new Login();
@@ -351,6 +368,9 @@ class Produtos{
         }
     }
     
+//******************************//
+//Menu de navegação
+//******************************//
     
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
